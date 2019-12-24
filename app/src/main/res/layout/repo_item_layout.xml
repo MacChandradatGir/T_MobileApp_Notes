@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/repo_name_textview"
+        android:layout_width="307dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
+        android:text="Repository Name"
+        app:layout_constraintEnd_toStartOf="@+id/fork_textview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Repository Name" />
+
+    <TextView
+        android:id="@+id/fork_textview"
+        android:layout_width="91dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="5dp"
+        android:text="Forks"
+        android:textAlignment="viewEnd"
+        app:layout_constraintStart_toEndOf="@+id/repo_name_textview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/star_textview"
+        android:layout_width="91dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="5dp"
+        android:paddingEnd="5dp"
+        android:text="Stars"
+        android:textAlignment="viewEnd"
+        app:layout_constraintStart_toEndOf="@+id/repo_name_textview"
+        app:layout_constraintTop_toBottomOf="@+id/fork_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

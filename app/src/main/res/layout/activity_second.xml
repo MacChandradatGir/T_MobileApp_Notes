@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.SecondActivity">
+
+    <TextView
+        android:id="@+id/main_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="GitHub Searcher"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/user_avatar_imageview"
+        android:layout_width="134dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_textview"
+        app:layout_constraintEnd_toStartOf="@id/user_name_textview"
+        tools:src="@tools:sample/avatars"/>
+
+    <TextView
+        android:id="@+id/user_name_textview"
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:text="User Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_imageview"
+        app:layout_constraintTop_toBottomOf="@+id/main_textview" />
+
+    <TextView
+        android:id="@+id/email_textview"
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_imageview"
+        app:layout_constraintTop_toBottomOf="@+id/user_name_textview" />
+
+    <TextView
+        android:id="@+id/location_textview"
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_imageview"
+        app:layout_constraintTop_toBottomOf="@+id/email_textview" />
+
+    <TextView
+        android:id="@+id/join_date_textview"
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Join Date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_imageview"
+        app:layout_constraintTop_toBottomOf="@+id/location_textview" />
+
+    <TextView
+        android:id="@+id/followers_textview"
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Followers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_imageview"
+        app:layout_constraintTop_toBottomOf="@+id/join_date_textview" />
+
+    <TextView
+        android:id="@+id/following_textview"
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Following"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_imageview"
+        app:layout_constraintTop_toBottomOf="@+id/followers_textview" />
+
+    <EditText
+        android:id="@+id/repo_search_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/following_textview"
+        android:tooltipText="Search for User's Repositories"
+        android:text="Search for User's Repositories"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/repo_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="459dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repo_search_edittext" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
