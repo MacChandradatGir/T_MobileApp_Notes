@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- NOTE: You must designate that this view will be using databinding.   -->
+<!--           We do this by setting the root element to a layout tag -->
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
+    <!-- NOTE: Now we need to assign the viewmodel that will be used and -->
+    <!--           how we will refer to that viewmodel                   -->
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.t_mobileapp.viewmodel.GitViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Just use a hint in the edit text, no need for a view here
     <TextView
         android:id="@+id/main_textview"
         android:layout_width="match_parent"
@@ -16,39 +30,42 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" /> -->
+
+    <!-- Do not use hard coded values here, instead remove these values to the -->
+    <!--    appropriate resource files                                         -->
+    <!-- You should let the android system figure out sizes as much as possible-->
+    <!--     instead of hard coding them                                       -->
 
     <EditText
         android:id="@+id/search_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="39dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/search_top_margin"
         android:inputType="text"
         android:textAlignment="viewStart"
-        android:textSize="20sp"
+        android:textSize="@dimen/search_text_size"
+        android:hint="@string/hint_user_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_textview"
-        tools:text="User name" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/user_name"
+        android:onTextChanged="@{viewmodel.onUserNameTextChanged}"
+        />
+        <!-- Set what method will handle the username as the user inputs the value -->
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_edittext"
-         />
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
-<!--    <Button-->
-<!--        android:id="@+id/search_button"-->
-<!--        android:layout_width="91dp"-->
-<!--        android:layout_height="36dp"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        android:text="Search"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.238"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/search_edittext"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/main_textview" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

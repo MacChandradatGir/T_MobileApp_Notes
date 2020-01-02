@@ -1,16 +1,20 @@
 package com.example.t_mobileapp.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import com.example.t_mobileapp.R
 import com.example.t_mobileapp.model.Item
 import com.example.t_mobileapp.model.User
+import com.example.t_mobileapp.viewmodel.GitViewModel
 
 
 class UserAdapter(val userList: List<Item>):
@@ -20,6 +24,8 @@ class UserAdapter(val userList: List<Item>):
            .inflate(R.layout.user_item_layout, parent, false)
         return UserViewHolder(view)
     }
+
+
 
     override fun getItemCount(): Int {
        return userList.size
@@ -32,7 +38,17 @@ class UserAdapter(val userList: List<Item>):
             .into(holder.userAvatar)
 
         holder.username.text = userList[position].login.toString()
-      //  holder.reponame.text = userList[position].reposUrl.toString()
+
+
+        holder.username.setOnClickListener{ view ->
+
+            var userSelected = userList[position].login.toString()
+            Toast.makeText(view.context, "${userSelected}", Toast.LENGTH_SHORT).show()
+//            var intent: Intent = Intent(view.context, GitViewModel::class.java)
+//            intent.putExtra("USERSELECTED", userSelected)
+//            view.context.startActivity(intent)
+
+        }
 
 
     }
