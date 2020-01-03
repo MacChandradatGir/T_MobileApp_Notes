@@ -2,6 +2,8 @@ package com.example.t_mobileapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -10,9 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.t_mobileapp.R
 import com.example.t_mobileapp.adapter.UserAdapter
 import com.example.t_mobileapp.databinding.ActivityMainBinding
-import com.example.t_mobileapp.model.Item
-import com.example.t_mobileapp.model.User
-import com.example.t_mobileapp.model.UserBio
+import com.example.t_mobileapp.model.UserBioInfo
 import com.example.t_mobileapp.viewmodel.UsersViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -27,32 +27,29 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(UsersViewModel::class.java)
         viewBinding.viewmodel = viewModel
 
+        viewModel.clearList.observe(this, Observer { needsCleared ->
+            if(::userAdapter.isInitialized){
+                if(needsCleared){
+                    userAdapter.clearUserBioInfoList()
+                }
+            }
+        })
+
+        viewModel.userToAdd.observe(this, Observer { userBioInfo ->
+            addUserToList(userBioInfo )
+        })
     }
 
+    private fun addUserToList(userBioInfo: UserBioInfo){
+        if(::userAdapter.isInitialized.not()){
+            val linearManager = LinearLayoutManager(this)
+            userAdapter = UserAdapter()
+            main_recyclerview.layoutManager = linearManager
+            main_recyclerview.adapter = userAdapter
 
-    private fun displayUsers(users: ArrayList<UserBio>) {
-        val adapter = UserAdapter(users)
-        main_recyclerview.adapter = adapter
-        val linear = LinearLayoutManager(this)
-        main_recyclerview.layoutManager = linear
-
+        }
+            userAdapter.updateUserBioList(userBioInfo)
     }
-
-//    private fun makeApiCall(searchEditText: String) {
-//       // var searchEditText = search_edittext.text.toString().trim()
-//
-//        compositeDisposable.add(
-//            viewModel.getUsers("${searchEditText}")
-//                .subscribe({user ->
-//                    displayUsers(user.items)
-//                }, {throwable ->
-//                    Log.e("TAG_ERROR", throwable.toString())
-//                })
-//
-//        )
-//    }
-
-
 
 
 }

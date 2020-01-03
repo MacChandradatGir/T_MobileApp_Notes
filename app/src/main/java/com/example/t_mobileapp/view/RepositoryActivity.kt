@@ -13,7 +13,7 @@ import com.example.t_mobileapp.adapter.RepoAdapter
 import com.example.t_mobileapp.adapter.UserAdapter
 import com.example.t_mobileapp.databinding.ActivityRepositoryBinding
 import com.example.t_mobileapp.model.Repository
-import com.example.t_mobileapp.model.UserBio
+import com.example.t_mobileapp.model.UserBioInfo
 import com.example.t_mobileapp.network.USER_INFO_ID
 import com.example.t_mobileapp.viewmodel.RepositoryViewModel
 import com.example.t_mobileapp.viewmodel.RepositoryViewModelFactory
@@ -29,7 +29,7 @@ class RepositoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_repository)
-        viewModelFactory = RepositoryViewModelFactory(application, intent.extras?.getSerializable(USER_INFO_ID)!!)
+        viewModelFactory = RepositoryViewModelFactory(application, intent.extras?.getParcelable(USER_INFO_ID)!! )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RepositoryViewModel::class.java)
         viewBinding.viewmodel = viewModel
         viewModel.userAvatar.observe(this, Observer { avatar_url ->
@@ -55,3 +55,4 @@ class RepositoryActivity : AppCompatActivity() {
     }
 
 }
+

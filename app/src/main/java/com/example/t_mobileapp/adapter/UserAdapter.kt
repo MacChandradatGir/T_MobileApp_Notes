@@ -1,23 +1,32 @@
 package com.example.t_mobileapp.adapter
 
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import com.example.t_mobileapp.R
-import com.example.t_mobileapp.model.UserBio
+
+import com.example.t_mobileapp.model.UserBioInfo
 import com.example.t_mobileapp.network.USER_INFO_ID
+import com.example.t_mobileapp.view.MainActivity
 import com.example.t_mobileapp.view.RepositoryActivity
 import kotlinx.android.synthetic.main.activity_repository.view.*
+import kotlinx.android.synthetic.main.activity_repository.view.user_name_textview
 import kotlinx.android.synthetic.main.repo_item_layout.view.*
+import kotlinx.android.synthetic.main.user_item_layout.view.*
 
 
-class UserAdapter(val userBioList: ArrayList<UserBio>):
+class UserAdapter():
     RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
+
+    private var userBioInfoList = ArrayList<UserBioInfo>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAdapter.UserViewHolder {
        val view = LayoutInflater.from(parent.context)
            .inflate(R.layout.user_item_layout, parent, false)
@@ -25,36 +34,36 @@ class UserAdapter(val userBioList: ArrayList<UserBio>):
     }
 
 
-    override fun getItemCount()= userBioList.size
+    override fun getItemCount()= userBioInfoList.size
 
     override fun onBindViewHolder(holder: UserAdapter.UserViewHolder, position: Int)
-        = holder.bindUserInfo(userBioList[position])
+        = holder.bindUserInfo(userBioInfoList[position])
 
-    fun updateUserBioList(userBio : UserBio){
-        userBioList.add(userBio)
+    fun updateUserBioList(userBioInfo : UserBioInfo){
+        userBioInfoList.add(userBioInfo)
         notifyDataSetChanged()
     }
 
-    fun clearUserBioList(){
-        userBioList.clear()
+    fun clearUserBioInfoList(){
+        userBioInfoList.clear()
         notifyDataSetChanged()
     }
 
 
 
     inner class UserViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        fun bindUserInfo(userBio: UserBio){
-            itemView.user_name_textview.text = userBio.login
-            itemView.repo_name_textview.text = "Repo: ${userBio.publicRepos}"
+        fun bindUserInfo(userBioInfo :UserBioInfo){
+            itemView.user_name_textview.text = userBioInfo.login
+            itemView.repo_textview.text = "Repo: ${userBioInfo.public_repos}"
             Glide
                 .with(itemView)
-                .load(userBio.avatarUrl)
-                .into(itemView.user_avatar_imageview)
+                .load(userBioInfo.avatar_url)
+                .into(itemView.user_imageview)
 
             itemView.setOnClickListener{
                 val intent = Intent(it.context, RepositoryActivity::class.java)
                 val bundle = Bundle()
-                bundle.putSerializable(USER_INFO_ID, userBio)
+                bundle.putParcelable(USER_INFO_ID, userBioInfo)
                 intent.putExtras(bundle)
                 it.context.startActivity(intent)
             }

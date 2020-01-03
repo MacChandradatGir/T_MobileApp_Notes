@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.t_mobileapp.model.Item
+import com.example.t_mobileapp.model.UserBioInfo
 
-import com.example.t_mobileapp.model.UserBio
 import com.example.t_mobileapp.network.GitService
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers
 class UsersViewModel(application: Application) : AndroidViewModel(application){
 
     private val compositeDisposable = CompositeDisposable()
-    val userToAdd = MutableLiveData<UserBio>()
+    val userToAdd = MutableLiveData<UserBioInfo>()
     val clearList = MutableLiveData<Boolean>()
     private val cacheFile = application.cacheDir
 
@@ -28,8 +28,6 @@ class UsersViewModel(application: Application) : AndroidViewModel(application){
         clearList.postValue(true)
          getUsers(currentUserNameEntered)
     }
-
-
 
     fun getUsers(userName: String) {
         compositeDisposable.add(
