@@ -1,41 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- NOTE: You must designate that this view will be using databinding.   -->
-<!--           We do this by setting the root element to a layout tag -->
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.MainActivity">
 
-    <!-- NOTE: Now we need to assign the viewmodel that will be used and -->
-    <!--           how we will refer to that viewmodel                   -->
     <data>
         <variable
             name="viewmodel"
-            type="com.example.t_mobileapp.viewmodel.GitViewModel" />
+            type="com.example.t_mobileapp.viewmodel.UsersViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <!-- Just use a hint in the edit text, no need for a view here
-    <TextView
-        android:id="@+id/main_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Search for Users"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" /> -->
-
-    <!-- Do not use hard coded values here, instead remove these values to the -->
-    <!--    appropriate resource files                                         -->
-    <!-- You should let the android system figure out sizes as much as possible-->
-    <!--     instead of hard coding them                                       -->
 
     <EditText
         android:id="@+id/search_edittext"
@@ -46,14 +24,12 @@
         android:textAlignment="viewStart"
         android:textSize="@dimen/search_text_size"
         android:hint="@string/hint_user_name"
+        android:onTextChanged="@{viewmodel::onUserNameTextChanged}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/user_name"
-        android:onTextChanged="@{viewmodel.onUserNameTextChanged}"
         />
-        <!-- Set what method will handle the username as the user inputs the value -->
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recyclerview"

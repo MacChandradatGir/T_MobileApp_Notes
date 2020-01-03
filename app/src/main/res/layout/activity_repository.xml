@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".view.RepositoryActivity">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.t_mobileapp.viewmodel.RepositoryViewModel" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.SecondActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/main_textview"
@@ -95,11 +106,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:inputType="text"
+        android:tooltipText="Search for User's Repositories"
+        android:onTextChanged="@{viewmodel::onRepositiryFilteringTextChanged}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/following_textview"
-        android:tooltipText="Search for User's Repositories"
-        android:text="Search for User's Repositories"/>
+       />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/repo_recyclerview"
@@ -113,3 +125,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

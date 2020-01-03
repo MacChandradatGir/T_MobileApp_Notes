@@ -6,6 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class UserBio implements Serializable
+
 {
 
     @SerializedName("login")

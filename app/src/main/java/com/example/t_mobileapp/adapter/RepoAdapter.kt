@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.t_mobileapp.R
 import com.example.t_mobileapp.model.Repository
 
-class RepoAdapter(val repoList: List<Repository>):
+class RepoAdapter(var repoList: List<Repository>):
     RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoAdapter.RepoViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.activity_second, parent, false)
+            .inflate(R.layout.repo_item_layout, parent, false)
         return RepoViewHolder(view)
     }
 
@@ -25,6 +25,11 @@ class RepoAdapter(val repoList: List<Repository>):
         holder.startextView.text = repoList[position].stargazersCount.toString()
         holder.forkTextView.text = repoList[position].forksCount.toString()
 
+    }
+
+    fun updateList(updateList : List<Repository>){
+        repoList = updateList
+        notifyDataSetChanged()
     }
 
     inner class RepoViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
